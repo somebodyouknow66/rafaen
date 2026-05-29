@@ -1,97 +1,165 @@
 import { useEffect, useRef } from 'react';
 
-const HeroCrown = () => (
-  <svg width="88" height="88" viewBox="0 0 100 100" fill="none"
-    style={{ filter: 'drop-shadow(0 0 30px rgba(196,169,110,0.35))', animation: 'crownFloat 6s ease-in-out infinite' }}>
-    <defs>
-      <linearGradient id="hcg" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"   stopColor="#8b6914"/>
-        <stop offset="30%"  stopColor="#f4dfa0"/>
-        <stop offset="60%"  stopColor="#c9a96e"/>
-        <stop offset="100%" stopColor="#f4dfa0"/>
-      </linearGradient>
-    </defs>
-    <path d="M12 68L8 28 L28 48 L50 12 L72 48 L92 28 L88 68Z" fill="url(#hcg)"/>
-    <rect x="10" y="70" width="80" height="9" rx="2" fill="url(#hcg)"/>
-    <circle cx="8"  cy="26" r="6" fill="#f4dfa0"/>
-    <circle cx="50" cy="11" r="8" fill="#f4dfa0"/>
-    <circle cx="92" cy="26" r="6" fill="#f4dfa0"/>
-  </svg>
-);
-
 export default function Hero() {
+  const bgRef    = useRef(null);
   const titleRef = useRef(null);
+  const ticking  = useRef(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (ticking.current) return;
+      ticking.current = true;
+      requestAnimationFrame(() => {
+        if (bgRef.current)
+          bgRef.current.style.transform = `translateY(${window.scrollY * 0.15}px) scale(1.1)`;
+        ticking.current = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     if (!titleRef.current) return;
     titleRef.current.innerHTML = '';
-    'RAAFÉN'.split('').forEach((l, i) => {
+    'THRONE'.split('').forEach((l, i) => {
       const s = document.createElement('span');
       s.className = 'letter';
       s.textContent = l;
-      const delay = 0.8 + i * 0.13;
-      s.style.background = 'linear-gradient(105deg,#9a7820 0%,#f6e4a8 25%,#d4af72 50%,#f6e4a8 75%,#9a7820 100%)';
-      s.style.backgroundSize = '300% auto';
-      s.style.webkitBackgroundClip = 'text';
-      s.style.webkitTextFillColor = 'transparent';
-      s.style.backgroundClip = 'text';
-      s.style.animation = `letterFall 0.9s cubic-bezier(0.16,1,0.3,1) ${delay}s forwards, shimmerLetter 4s linear ${delay}s infinite`;
+      const delay = 1.2 + i * 0.1;
+      s.style.cssText = `
+        background: linear-gradient(105deg,#9a7820 0%,#f6e4a8 25%,#d4af72 50%,#f6e4a8 75%,#9a7820 100%);
+        background-size: 300% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: letterFall 0.9s cubic-bezier(0.16,1,0.3,1) ${delay}s forwards,
+                   shimmerLetter 4s linear ${delay}s infinite;
+      `;
       titleRef.current.appendChild(s);
     });
   }, []);
 
   const scrollTo = (e, href) => {
     e.preventDefault();
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <section id="hero">
-      <div className="hero-bg">
-        <div style={{ width:'100%', height:'100%', background:'radial-gradient(ellipse at 30% 40%, #2a1a00 0%, #0e0b18 35%, #05040a 70%, #0a0614 100%)', position:'relative', overflow:'hidden' }}>
-          <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse at 70% 60%, rgba(139,105,20,0.18) 0%, transparent 55%)' }}/>
-          <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse at 20% 80%, rgba(80,20,60,0.14) 0%, transparent 45%)' }}/>
-          {/* Bokeh */}
-          <div style={{ position:'absolute', width:3, height:3, background:'rgba(244,223,160,0.6)', borderRadius:'50%', top:'22%', left:'18%', boxShadow:'0 0 8px rgba(244,223,160,0.8)' }}/>
-          <div style={{ position:'absolute', width:2, height:2, background:'rgba(196,169,110,0.5)', borderRadius:'50%', top:'38%', left:'72%', boxShadow:'0 0 6px rgba(196,169,110,0.7)' }}/>
-          <div style={{ position:'absolute', width:4, height:4, background:'rgba(244,223,160,0.35)', borderRadius:'50%', top:'65%', left:'55%', boxShadow:'0 0 12px rgba(244,223,160,0.5)' }}/>
-          <div style={{ position:'absolute', width:2, height:2, background:'rgba(196,169,110,0.4)', borderRadius:'50%', top:'15%', left:'85%', boxShadow:'0 0 6px rgba(196,169,110,0.6)' }}/>
-          <div style={{ position:'absolute', width:3, height:3, background:'rgba(244,223,160,0.5)', borderRadius:'50%', top:'78%', left:'25%', boxShadow:'0 0 10px rgba(244,223,160,0.7)' }}/>
+    <section id="hero" style={{
+      position: 'relative',
+      overflow: 'hidden',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+
+      {/* ── Background image ── */}
+      <img
+        ref={bgRef}
+        src="/throne.png"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '-5%', left: 0, right: 0,
+          width: '100%', height: '110%',
+          objectFit: 'cover',
+          objectPosition: 'center center',
+          willChange: 'transform',
+          transform: 'scale(1.1)',
+          zIndex: 0,
+        }}
+      />
+
+      {/* ── Full overlay — darkens entire image evenly ── */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 1,
+        background: 'rgba(5,4,10,0.62)',
+      }} />
+
+      {/* ── Extra vignette to push center text further ── */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 2,
+        background: 'radial-gradient(ellipse at center, transparent 30%, rgba(5,4,10,0.55) 100%)',
+      }} />
+
+      {/* ── Centered content ── */}
+      <div style={{
+        position: 'relative', zIndex: 3,
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center',
+        textAlign: 'center',
+        padding: '0 24px',
+        width: '100%',
+      }}>
+
+        <div style={{
+          fontFamily: 'var(--font-sans)', fontSize: 10, fontWeight: 300,
+          letterSpacing: '0.5em', textTransform: 'uppercase',
+          color: 'rgba(196,169,110,0.8)', marginBottom: 24,
+          opacity: 0, animation: 'fadeUp 0.8s var(--ease-expo) 0.6s forwards',
+        }}>
+          Maison de Parfum &nbsp;·&nbsp; Paris &nbsp;·&nbsp; Est. 2019
         </div>
-        <div className="hero-bg-overlay"/>
-      </div>
 
-      {/* Orbital rings */}
-      <div className="orbital" style={{ width:300, height:300, animationDuration:'60s' }}/>
-      <div className="orbital" style={{ width:500, height:500, animationDuration:'90s', animationDirection:'reverse', borderStyle:'dashed' }}/>
-      <div className="orbital" style={{ width:720, height:720, animationDuration:'130s' }}/>
-      <div className="orbital" style={{ width:980, height:980, animationDuration:'160s', animationDirection:'reverse', opacity:0.5 }}/>
+        <h1 ref={titleRef} className="hero-title" style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(56px, 10vw, 100px)',
+          letterSpacing: '0.35em', lineHeight: 1,
+          margin: 0,
+          textShadow: '0 2px 40px rgba(0,0,0,0.8)',
+        }} />
 
-      {/* Pulse rings */}
-      <div className="pulse-ring"/>
-      <div className="pulse-ring" style={{ animationDelay:'1.4s' }}/>
-      <div className="pulse-ring" style={{ animationDelay:'2.8s' }}/>
+        <div style={{
+          width: 100, height: 1,
+          background: 'linear-gradient(90deg, transparent, var(--gold-mid), transparent)',
+          margin: '20px auto',
+          opacity: 0, animation: 'fadeUp 0.8s var(--ease-expo) 2s forwards',
+        }} />
 
-      <div className="hero-content">
-        <div className="hero-eyebrow">Maison de Parfum &nbsp;·&nbsp; Paris &nbsp;·&nbsp; Est. 2019</div>
-        <div className="hero-crown"><HeroCrown /></div>
-        <h1 className="hero-title" ref={titleRef}/>
-        <p className="hero-tagline">Beyond The Ordinary</p>
-        <div className="hero-line"/>
-        <p style={{ fontFamily:'var(--font-sans)', fontSize:14, fontWeight:300, lineHeight:1.9, color:'rgba(200,190,175,0.45)', maxWidth:540, margin:'0 auto 48px', opacity:0, animation:'fadeUp 1s var(--ease-expo) 3s forwards' }}>
-          Where artistry transcends the visible. Each RAAFÉN fragrance is a world — crafted for those who understand that true luxury is felt, not worn.
+        <p style={{
+          fontFamily: 'var(--font-sans)', fontSize: 13, fontWeight: 300,
+          letterSpacing: '0.25em', textTransform: 'uppercase',
+          color: 'rgba(220,210,195,0.85)',
+          marginBottom: 40,
+          textShadow: '0 1px 12px rgba(0,0,0,0.9)',
+          opacity: 0, animation: 'fadeUp 0.8s var(--ease-expo) 2.2s forwards',
+        }}>
+          Dark oud · smoked amber · velvety rose
         </p>
-        <div className="hero-btns">
-          <a href="#collections" className="btn-primary"  onClick={e => scrollTo(e,'#collections')}>Explore Collection</a>
-          <a href="#story"       className="btn-secondary" onClick={e => scrollTo(e,'#story')}>Our Story</a>
+
+        <div style={{
+          display: 'flex', gap: 16, justifyContent: 'center',
+          alignItems: 'center', flexWrap: 'wrap',
+          opacity: 0, animation: 'fadeUp 0.8s var(--ease-expo) 2.5s forwards',
+        }}>
+          <button className="btn-primary" style={{ cursor: 'none' }}>
+            Add to Collection · $340
+          </button>
+          <a href="#collections" className="btn-secondary"
+            onClick={e => scrollTo(e, '#collections')}>
+            Full Collection
+          </a>
         </div>
       </div>
 
-      <div className="scroll-indicator">
+      {/* ── Scroll indicator ── */}
+      <div className="scroll-indicator" style={{
+        position: 'absolute',
+        left: '50%', transform: 'translateX(-50%)', zIndex: 4,
+      }}>
         <span>Scroll</span>
-        <div className="scroll-mouse"><div className="scroll-wheel"/></div>
+        <div className="scroll-mouse"><div className="scroll-wheel" /></div>
       </div>
+
+      <style>{`
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 }
