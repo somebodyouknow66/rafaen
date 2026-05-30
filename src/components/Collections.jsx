@@ -2,40 +2,61 @@ import { useState } from 'react';
 import Reveal from './Reveal';
 import { PRODUCTS } from '../data';
 
-function StarRating({ stars }) {
-  return (
-    <div className="product-rating">
-      {stars.map((on, i) => <span key={i} className={`star${on ? ' on' : ''}`}>★</span>)}
-    </div>
-  );
-}
+const TWO_PRODUCTS = PRODUCTS.slice(0, 2);
 
-function ProductCard({ product, onAddToCart, delay }) {
+function ProductCard({ product, onAddToCart, index }) {
   const [wished, setWished] = useState(false);
-  const img = `https://picsum.photos/seed/${product.seed}/600/720`;
+  const img = `https://picsum.photos/seed/${product.seed}/800/1000`;
   const thumbImg = `https://picsum.photos/seed/${product.seed}/150/200`;
 
-  const badgeClass = product.badge === 'Bestseller' ? 'badge-best' : 'badge-ltd';
-
   return (
-    <Reveal delay={delay}>
-      <div className="product-card">
-        {product.badge && <span className={`product-badge ${badgeClass}`}>{product.badge}</span>}
-        <div className="product-img-wrap">
-          <img src={img} alt={product.name} className="product-img"/>
-          <div className="product-overlay"/>
-          <div className="product-actions">
-            <button className="product-atc" onClick={() => onAddToCart(product.name, product.price, thumbImg)}>Add to Cart</button>
-            <button className="product-wish" onClick={() => setWished(w => !w)}>{wished ? '♥' : '♡'}</button>
+    <Reveal delay={index * 0.15}>
+      <div className="pc2-card">
+        {product.badge && (
+          <span className={`pc2-badge ${product.badge === 'Bestseller' ? 'badge-best' : 'badge-ltd'}`}>
+            {product.badge}
+          </span>
+        )}
+
+        {/* Image */}
+        <div className="pc2-img-wrap">
+          <img src={img} alt={product.name} className="pc2-img" />
+          <div className="pc2-img-overlay" />
+
+          {/* Hover CTA over image */}
+          <div className="pc2-hover-cta">
+            <button
+              className="pc2-atc-btn"
+              onClick={() => onAddToCart(product.name, product.price, thumbImg)}
+            >
+              Add to Collection · ${product.price}
+            </button>
           </div>
         </div>
-        <div className="product-info">
-          <div className="product-type">{product.type}</div>
-          <div className="product-name">{product.name}</div>
-          <div className="product-notes">{product.notes}</div>
-          <div className="product-footer">
-            <span className="product-price gs">${product.price}</span>
-            <StarRating stars={product.stars}/>
+
+        {/* Info */}
+        <div className="pc2-info">
+          <div className="pc2-meta">
+            <span className="pc2-type">{product.type}</span>
+            <button
+              className={`pc2-wish${wished ? ' wished' : ''}`}
+              onClick={() => setWished(w => !w)}
+              aria-label="Wishlist"
+            >
+              {wished ? '♥' : '♡'}
+            </button>
+          </div>
+
+          <div className="pc2-name">{product.name}</div>
+          <div className="pc2-notes">{product.notes}</div>
+
+          <div className="pc2-footer">
+            <span className="pc2-price">${product.price}</span>
+            <div className="pc2-stars">
+              {product.stars.map((on, i) => (
+                <span key={i} className={`star${on ? ' on' : ''}`}>★</span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -44,38 +65,42 @@ function ProductCard({ product, onAddToCart, delay }) {
 }
 
 export default function Collections({ onAddToCart }) {
-  const scrollTo = (e, href) => {
-    e.preventDefault();
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   return (
-    <section id="collections" className="section">
+    <section id="collections" className="section pc2-section">
+
+      {/* Section header */}
       <div className="container">
-        <div className="collection-intro">
-          <Reveal direction="left" className="collection-intro-text">
+        <Reveal>
+          <div className="pc2-header">
             <span className="tag">Signature Collection</span>
-            <h2 className="section-title gs gs-slow" style={{ marginTop:12 }}>The Six</h2>
-            <p className="section-sub">Six worlds. Six stories. One house.</p>
-          </Reveal>
-          <Reveal direction="right" className="collection-intro-link">
-            <a href="#" className="story-cta">
-              <span className="story-cta-line"/>
-              View All
-            </a>
-          </Reveal>
-        </div>
-        <div className="products-grid">
-          {PRODUCTS.map((p, i) => (
+            <h2 className="pc2-title">Crafted for<br />the few.</h2>
+            <p className="pc2-subtitle">
+              Two fragrances. Two worlds.<br />Each one a statement.
+            </p>
+            <div className="pc2-header-line" />
+          </div>
+        </Reveal>
+
+        {/* Two-product grid */}
+        <div className="pc2-grid">
+          {TWO_PRODUCTS.map((p, i) => (
             <ProductCard
               key={p.id}
               product={p}
               onAddToCart={onAddToCart}
-              delay={[0.05,0.12,0.19,0.08,0.16,0.24][i]}
+              index={i}
             />
           ))}
         </div>
+
+        {/* Bottom strip */}
+        <Reveal delay={0.35}>
+          <div className="pc2-bottom">
+            <div className="pc2-bottom-line" />
+            <span className="pc2-bottom-text">More fragrances arriving — 2025</span>
+            <div className="pc2-bottom-line" />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

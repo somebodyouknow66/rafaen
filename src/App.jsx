@@ -62,9 +62,9 @@ export default function App() {
       <main>
         <Hero />
         <Marquee items={MARQUEE_1} dot="✦" />
+        <Collections onAddToCart={handleAddToCart} />
         <Story />
         <FullBleed />
-        <Collections onAddToCart={handleAddToCart} />
         <Philosophy />
         <Gallery />
         <ScentFinder />
