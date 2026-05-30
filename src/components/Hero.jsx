@@ -3,21 +3,8 @@ import { useEffect, useRef } from 'react';
 export default function Hero() {
   const bgRef    = useRef(null);
   const titleRef = useRef(null);
-  const ticking  = useRef(false);
 
-  useEffect(() => {
-    const onScroll = () => {
-      if (ticking.current) return;
-      ticking.current = true;
-      requestAnimationFrame(() => {
-        if (bgRef.current)
-          bgRef.current.style.transform = `translateY(${window.scrollY * 0.15}px) scale(1.1)`;
-        ticking.current = false;
-      });
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+
 
   useEffect(() => {
     if (!titleRef.current) return;
@@ -29,12 +16,10 @@ export default function Hero() {
       const delay = 1.2 + i * 0.1;
       s.style.cssText = `
         background: linear-gradient(105deg,#9a7820 0%,#f6e4a8 25%,#d4af72 50%,#f6e4a8 75%,#9a7820 100%);
-        background-size: 300% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation: letterFall 0.9s cubic-bezier(0.16,1,0.3,1) ${delay}s forwards,
-                   shimmerLetter 4s linear ${delay}s infinite;
+        animation: letterFall 0.9s cubic-bezier(0.16,1,0.3,1) ${delay}s forwards;
       `;
       titleRef.current.appendChild(s);
     });
@@ -63,12 +48,10 @@ export default function Hero() {
         aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '-5%', left: 0, right: 0,
-          width: '100%', height: '110%',
+          top: 0, left: 0, right: 0,
+          width: '100%', height: '100%',
           objectFit: 'cover',
           objectPosition: 'center center',
-          willChange: 'transform',
-          transform: 'scale(1.1)',
           zIndex: 0,
         }}
       />
@@ -147,7 +130,7 @@ export default function Hero() {
 
       {/* ── Scroll indicator ── */}
       <div className="scroll-indicator" style={{
-        position: 'absolute',
+        position: 'absolute', bottom: 32,
         left: '50%', transform: 'translateX(-50%)', zIndex: 4,
       }}>
         <span>Scroll</span>

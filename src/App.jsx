@@ -36,12 +36,11 @@ export default function App() {
   return (
     <>
       <Cursor />
-      <div id="grain" />
 
-      {/* Ambient blobs */}
-      <div className="blob" style={{ width:700,height:700,top:'-15%',left:'-12%',background:'radial-gradient(circle,rgba(139,105,20,0.12),transparent 70%)',opacity:0.7,animationDuration:'18s' }}/>
-      <div className="blob" style={{ width:550,height:550,bottom:'-10%',right:'-10%',background:'radial-gradient(circle,rgba(180,90,40,0.09),transparent 70%)',animationDuration:'14s',animationDelay:'-5s' }}/>
-      <div className="blob" style={{ width:400,height:400,top:'45%',left:'35%',background:'radial-gradient(circle,rgba(196,169,110,0.07),transparent 70%)',animationDuration:'22s',animationDelay:'-8s' }}/>
+      {/* Static ambient blobs — no animation for performance */}
+      <div className="blob" style={{ width:700,height:700,top:'-15%',left:'-12%',background:'radial-gradient(circle,rgba(139,105,20,0.12),transparent 70%)',opacity:0.7 }}/>
+      <div className="blob" style={{ width:550,height:550,bottom:'-10%',right:'-10%',background:'radial-gradient(circle,rgba(180,90,40,0.09),transparent 70%)' }}/>
+      <div className="blob" style={{ width:400,height:400,top:'45%',left:'35%',background:'radial-gradient(circle,rgba(196,169,110,0.07),transparent 70%)' }}/>
 
       <Toast msg={msg} visible={visible} />
 
