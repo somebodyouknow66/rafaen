@@ -8,7 +8,6 @@ import Nav           from './components/Nav';
 import CartDrawer    from './components/CartDrawer';
 import Hero          from './components/Hero';
 import Marquee       from './components/Marquee';
-import Story         from './components/Story';
 import FullBleed     from './components/FullBleed';
 import Collections   from './components/Collections';
 import Philosophy    from './components/Philosophy';
