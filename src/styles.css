@@ -57,16 +57,14 @@ body {
 }
 
 
-/* ─── SHIMMER TEXT ───────────────────────────────────────────── */
+/* ─── GOLD TEXT — static gradient matching Hero ──────────────── */
 .gs {
-  background: var(--shimmer); background-size: 300% auto;
+  background: linear-gradient(105deg,#fff 0%,#f6e4a8 30%,#d4af72 55%,#f6e4a8 80%,#e8d5a0 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; animation: shimmer 4s linear infinite;
+  background-clip: text;
+  filter: drop-shadow(0 2px 12px rgba(0,0,0,0.7));
 }
-@keyframes shimmer { to { background-position: -200% center; } }
-@keyframes shimmerLetter { to { background-position: -200% center; } }
-
-.gs-slow { animation-duration: 7s; }
+.gs-slow { /* no-op — kept so JSX classNames don't error */ }
 
 /* ─── UTILITY ────────────────────────────────────────────────── */
 .gd { height: 1px; background: linear-gradient(90deg, transparent, var(--gold-mid), transparent); }
@@ -294,8 +292,8 @@ nav.scrolled {
 }
 .marquee-track { display: flex; width: max-content; animation: marquee 28s linear infinite; }
 .marquee-track:hover { animation-play-state: paused; }
-.marquee-item { font-family: var(--font-display); font-size: 24px; letter-spacing: 0.3em; color: rgb(196, 169, 110); padding: 0 48px; white-space: nowrap; }
-.marquee-dot { color: rgb(196, 169, 110); margin: 0 12px; }
+.marquee-item { font-family: var(--font-display); font-size: 36px; letter-spacing: 0.3em; color: rgba(196,169,110,0.045); padding: 0 48px; white-space: nowrap; }
+.marquee-dot { color: rgba(196,169,110,0.08); margin: 0 12px; }
 @keyframes marquee { to{transform:translateX(-50%)} }
 .marquee-r .marquee-track { animation-direction: reverse; animation-duration: 36s; }
 
@@ -659,7 +657,7 @@ footer { background: var(--ink-2); border-top: 1px solid rgba(196,169,110,0.05);
   --gold-mid:   #8b6310;
   --gold-deep:  #6b4a0a;
   --gold-warm:  #9e7218;
-  --shimmer: linear-gradient(105deg,#6b4a0a 0%,#c9960e 25%,#8b6310 50%,#c9960e 75%,#6b4a0a 100%);
+  /* --shimmer removed — using static .gs gradient */
 }
 
 /* ── Base & Scrollbar ── */
