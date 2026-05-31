@@ -30,7 +30,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" style={{
+    <section id="hero" style={{ 
       position: 'relative',
       overflow: 'hidden',
       minHeight: '100vh',
