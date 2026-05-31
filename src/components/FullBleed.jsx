@@ -4,7 +4,7 @@ import styles from '../modules/FullBleed.module.css';
 export default function FullBleed() {
   return (
     <div className={styles.fullBleed}>
-      <img src="https://picsum.photos/seed/raafen-wide-dark/1920/800" alt="" />
+      <img src="/full-bleed.png" alt="" />
       <div className={styles.fullBleedOverlay} />
       <div className={styles.fullBleedText}>
         <Reveal direction="scale" className={`${styles.fullBleedWord} gs gs-slow`}>
