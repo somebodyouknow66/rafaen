@@ -64,16 +64,6 @@ export default function Nav({ cartCount, onCartOpen, onThemeToggle, theme }) {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          {/* Theme Toggle Controller */}
-          <button
-            id="theme-toggle"
-            className={styles.themeToggle}
-            onClick={onThemeToggle}
-            aria-label="Toggle theme"
-          >
-            <span className={styles.sun}>☀</span>
-            <span className={styles.moon}>☿</span>
-          </button>
 
           {/* Bag / Cart Icon Button */}
           <button className={styles.cartBtn} onClick={onCartOpen} aria-label="Cart">
