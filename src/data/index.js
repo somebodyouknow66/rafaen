@@ -36,7 +36,6 @@ export const MARQUEE_1 = ['RAAFÉN', 'Beyond The Ordinary', 'Throne'];
 export const MARQUEE_2 = ['RAAFÉN', 'Beyond The Ordinary', 'Mirpurkhas'];
 
 export const NAV_LINKS = [
-  { text: 'Story',       href: '#story'       },
   { text: 'Collections', href: '#collections' },
   { text: 'Philosophy',  href: '#philosophy'  },
   { text: 'Contact',     href: '#contact'     },
