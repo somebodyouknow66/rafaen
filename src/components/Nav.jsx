@@ -90,7 +90,7 @@ export default function Nav({ cartCount, onCartOpen, onThemeToggle, theme }) {
           {/* Desktop Call To Action */}
           <a
             href="#collections"
-            className={styles.link}
+            className={styles.cta}
             onClick={(e) => scrollTo(e, '#collections')}
           >
             <span>Explore</span>
