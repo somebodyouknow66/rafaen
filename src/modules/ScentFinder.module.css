@@ -1,0 +1,42 @@
+/* ─── SCENT FINDER ────────────────────────────────────────────── */
+.section { background: var(--ink-2); position: relative; overflow: hidden; }
+.inner   { max-width: 820px; margin: 0 auto; text-align: center; }
+
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 48px 0; }
+
+.card {
+  padding: 28px 16px;
+  border: 1px solid rgba(196, 169, 110, 0.08);
+  border-radius: 4px;
+  cursor: none;
+  background: rgba(8, 6, 2, 0.5);
+  transition: all 0.4s var(--ease-expo);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.card:hover    { border-color: rgba(196, 169, 110, 0.25); background: rgba(196, 169, 110, 0.04); transform: translateY(-6px); }
+.card.selected { border-color: var(--gold-mid); background: rgba(196, 169, 110, 0.08); }
+
+.icon  { font-size: 32px; }
+.label { font-family: var(--font-display); font-size: 16px; letter-spacing: 0.1em; color: #ccc; }
+.card.selected .label { color: var(--gold-mid); }
+
+.result {
+  margin-top: 20px;
+  padding: 28px;
+  border: 1px solid rgba(196, 169, 110, 0.15);
+  border-radius: 4px;
+  background: rgba(8, 6, 2, 0.7);
+  display: none;
+}
+.result.show { display: block; animation: fadeUp 0.6s var(--ease-expo) both; }
+
+.resultName { font-family: var(--font-display); font-size: 32px; color: var(--gold-mid); letter-spacing: 0.12em; margin-bottom: 8px; }
+.resultDesc { font-family: var(--font-serif); font-style: italic; font-size: 17px; color: rgba(196, 169, 110, 0.5); }
+.finderBtn  { margin-top: 12px; }
+
+/* ─── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 768px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .cards { grid-template-columns: 1fr 1fr !important; gap: 10px !important; } }

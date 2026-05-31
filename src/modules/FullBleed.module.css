@@ -1,0 +1,8 @@
+/* ─── FULL BLEED ──────────────────────────────────────────────── */
+.fullBleed         { position: relative; height: 60vh; overflow: hidden; }
+.fullBleed img     { width: 100%; height: 100%; object-fit: cover; }
+.fullBleedOverlay  { position: absolute; inset: 0; background: linear-gradient(to bottom, var(--ink) 0%, rgba(8, 6, 2, 0.2) 40%, rgba(8, 6, 2, 0.2) 60%, var(--ink) 100%); }
+.fullBleedText     { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.fullBleedWord     { font-family: var(--font-display); font-size: clamp(60px, 14vw, 180px); font-weight: 700; letter-spacing: 0.15em; line-height: 0.9; }
+.fullBleedRule     { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-mid), transparent); margin: 24px auto; }
+.fullBleedSub      { font-family: var(--font-serif); font-style: italic; font-size: 17px; letter-spacing: 0.4em; color: rgba(196, 169, 110, 0.62); }
