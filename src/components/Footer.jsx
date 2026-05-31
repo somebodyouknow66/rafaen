@@ -1,4 +1,5 @@
 import { FOOTER_LINKS } from '../data';
+import styles from '../modules/Footer.module.css';
 
 export default function Footer() {
   const scrollTo = (e, href) => {
@@ -9,45 +10,81 @@ export default function Footer() {
   };
 
   return (
-    <footer>
+    <footer className={styles.footer}>
       <div className="container">
-        <div className="footer-top">
-          <div className="footer-brand">
-            <span className="footer-logo gs gs-slow">RAAFÉN</span>
-            <span className="footer-tagline">Beyond The Ordinary</span>
-            <p className="footer-brand-text">A maison built on the belief that true luxury is felt, not worn. RAAFÉN exists for those who understand that a fragrance is not just a scent — it is a declaration.</p>
+        <div className={styles.top}>
+          <div className={styles.brand}>
+            <span className={`${styles.logo} gs gs-slow`}>RAAFÉN</span>
+            <span className={styles.tagline}>Beyond The Ordinary</span>
+            <p>
+              A maison built on the belief that true luxury is felt, not worn.
+              RAAFÉN exists for those who understand that a fragrance is not
+              just a scent — it is a declaration.
+            </p>
           </div>
+
           <div>
-            <div className="footer-col-title">Collection</div>
-            <ul className="footer-links">
-              {FOOTER_LINKS.collection.map(name => (
-                <li key={name}><a href="#" className="footer-link">{name}</a></li>
+            <div className={styles.colTitle}>Collection</div>
+            <ul className={styles.links}>
+              {FOOTER_LINKS.collection.map((name) => (
+                <li key={name}>
+                  <a href="#" className={styles.link}>
+                    {name}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
+
           <div>
-            <div className="footer-col-title">Maison</div>
-            <ul className="footer-links">
+            <div className={styles.colTitle}>Maison</div>
+            <ul className={styles.links}>
               {FOOTER_LINKS.maison.map(({ label, href }) => (
-                <li key={label}><a href={href} className="footer-link" onClick={e => scrollTo(e, href)}>{label}</a></li>
+                <li key={label}>
+                  <a
+                    href={href}
+                    className={styles.link}
+                    onClick={(e) => scrollTo(e, href)}
+                  >
+                    {label}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
+
           <div>
-            <div className="footer-col-title">Support</div>
-            <ul className="footer-links">
+            <div className={styles.colTitle}>Support</div>
+            <ul className={styles.links}>
               {FOOTER_LINKS.support.map(({ label, href }) => (
-                <li key={label}><a href={href} className="footer-link" onClick={e => scrollTo(e, href)}>{label}</a></li>
+                <li key={label}>
+                  <a
+                    href={href}
+                    className={styles.link}
+                    onClick={(e) => scrollTo(e, href)}
+                  >
+                    {label}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
         </div>
-        <div className="footer-bottom">
-          <span className="footer-copy">© 2025 RAAFÉN · Maison de Parfum · All rights reserved</span>
-          <div className="footer-legal">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
-            <a href="#">Cookie Policy</a>
+
+        <div className={styles.bottom}>
+          <span className={styles.copy}>
+            © 2025 RAAFÉN · Maison de Parfum · All rights reserved
+          </span>
+          <div className={styles.legal}>
+            <a href="#" className={styles.legalLink}>
+              Privacy Policy
+            </a>
+            <a href="#" className={styles.legalLink}>
+              Terms of Use
+            </a>
+            <a href="#" className={styles.legalLink}>
+              Cookie Policy
+            </a>
           </div>
         </div>
       </div>

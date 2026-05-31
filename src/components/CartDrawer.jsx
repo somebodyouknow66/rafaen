@@ -10,26 +10,28 @@ export default function CartDrawer({
   return (
     <>
       <div
-        className={`${styles.drawerOverlay} ${open ? styles.show : ''}`}
+        className={`${styles.overlay} ${open ? styles.show : ''}`}
         onClick={onClose}
       />
 
       <div
         id="cart-drawer"
-        className={`${styles.cartDrawer} ${open ? styles.open : ''}`}
+        className={`${styles.drawer} ${open ? styles.open : ''}`}
       >
-        <div className={styles.drawerHeader}>
-          <span className={styles.drawerTitle}>Your Selection</span>
+        <div className={styles.header}>
+          <span className={styles.title}>
+            Your Selection
+          </span>
 
           <button
-            className={styles.drawerClose}
+            className={styles.closeBtn}
             onClick={onClose}
           >
             ✕
           </button>
         </div>
 
-        <div className={styles.cartItems}>
+        <div className={styles.items}>
           {cart.length === 0 ? (
             <div className={styles.emptyCart}>
               <svg
@@ -50,30 +52,30 @@ export default function CartDrawer({
           ) : (
             cart.map((item) => (
               <div
-                className={styles.cartItem}
+                className={styles.item}
                 key={item.name}
               >
                 <img
                   src={item.img}
                   alt={item.name}
-                  className={styles.cartItemImg}
+                  className={styles.itemImg}
                 />
 
-                <div className={styles.cartItemInfo}>
-                  <div className={styles.cartItemName}>
+                <div className={styles.itemInfo}>
+                  <div className={styles.itemName}>
                     {item.name}
                   </div>
 
-                  <div className={styles.cartItemSub}>
+                  <div className={styles.itemSub}>
                     Qty: {item.qty}
                   </div>
 
-                  <div className={styles.cartItemPrice}>
+                  <div className={styles.itemPrice}>
                     ${(item.price * item.qty).toLocaleString()}
                   </div>
 
                   <button
-                    className={styles.cartItemRemove}
+                    className={styles.itemRemove}
                     onClick={() => onRemove(item.name)}
                   >
                     Remove
@@ -86,12 +88,12 @@ export default function CartDrawer({
 
         {cart.length > 0 && (
           <div className={styles.drawerFooter}>
-            <div className={styles.cartTotal}>
-              <span className={styles.cartTotalLabel}>
+            <div className={styles.total}>
+              <span className={styles.totalLabel}>
                 Total
               </span>
 
-              <span className={styles.cartTotalAmount}>
+              <span className={styles.totalAmount}>
                 ${total.toLocaleString()}
               </span>
             </div>

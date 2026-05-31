@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Reveal from './Reveal';
 import { PRODUCTS } from '../data';
+import styles from '../modules/Collections.module.css';
 
 const TWO_PRODUCTS = PRODUCTS.slice(0, 2);
 
@@ -11,23 +12,36 @@ function ProductCard({ product, onAddToCart, index }) {
 
   return (
     <Reveal delay={index * 0.15}>
-      <div className="pc2-card">
+      <div className={styles.card}>
         {product.badge && (
-          <span className={`pc2-badge ${product.badge === 'Bestseller' ? 'badge-best' : 'badge-ltd'}`}>
+          <span
+            className={`${styles.badge} ${
+              product.badge === 'Bestseller'
+                ? styles.badgeBest
+                : styles.badgeLtd
+            }`}
+          >
             {product.badge}
           </span>
         )}
 
         {/* Image */}
-        <div className="pc2-img-wrap">
-          <img src={img} alt={product.name} className="pc2-img" />
-          <div className="pc2-img-overlay" />
+        <div className={styles.imgWrap}>
+          <img
+            src={img}
+            alt={product.name}
+            className={styles.img}
+          />
+
+          <div className={styles.imgOverlay} />
 
           {/* Hover CTA over image */}
-          <div className="pc2-hover-cta">
+          <div className={styles.hoverCta}>
             <button
-              className="pc2-atc-btn"
-              onClick={() => onAddToCart(product.name, product.price, thumbImg)}
+              className={styles.atcBtn}
+              onClick={() =>
+                onAddToCart(product.name, product.price, thumbImg)
+              }
             >
               Add to Collection · ${product.price}
             </button>
@@ -35,26 +49,46 @@ function ProductCard({ product, onAddToCart, index }) {
         </div>
 
         {/* Info */}
-        <div className="pc2-info">
-          <div className="pc2-meta">
-            <span className="pc2-type">{product.type}</span>
+        <div className={styles.info}>
+          <div className={styles.meta}>
+            <span className={styles.type}>
+              {product.type}
+            </span>
+
             <button
-              className={`pc2-wish${wished ? ' wished' : ''}`}
-              onClick={() => setWished(w => !w)}
+              className={`${styles.wish} ${
+                wished ? styles.wished : ''
+              }`}
+              onClick={() => setWished((w) => !w)}
               aria-label="Wishlist"
             >
               {wished ? '♥' : '♡'}
             </button>
           </div>
 
-          <div className="pc2-name">{product.name}</div>
-          <div className="pc2-notes">{product.notes}</div>
+          <div className={styles.name}>
+            {product.name}
+          </div>
 
-          <div className="pc2-footer">
-            <span className="pc2-price">${product.price}</span>
-            <div className="pc2-stars">
+          <div className={styles.notes}>
+            {product.notes}
+          </div>
+
+          <div className={styles.footer}>
+            <span className={styles.price}>
+              ${product.price}
+            </span>
+
+            <div className={styles.stars}>
               {product.stars.map((on, i) => (
-                <span key={i} className={`star${on ? ' on' : ''}`}>★</span>
+                <span
+                  key={i}
+                  className={`${styles.star} ${
+                    on ? styles.on : ''
+                  }`}
+                >
+                  ★
+                </span>
               ))}
             </div>
           </div>
@@ -66,23 +100,36 @@ function ProductCard({ product, onAddToCart, index }) {
 
 export default function Collections({ onAddToCart }) {
   return (
-    <section id="collections" className="section pc2-section">
-
+    <section
+      id="collections"
+      className={`section ${styles.section}`}
+    >
       {/* Section header */}
       <div className="container">
         <Reveal>
-          <div className="pc2-header">
-            <span className="tag">Signature Collection</span>
-            <h2 className="pc2-title">Crafted for<br />the few.</h2>
-            <p className="pc2-subtitle">
-              Two fragrances. Two worlds.<br />Each one a statement.
+          <div className={styles.header}>
+            <span className="tag">
+              Signature Collection
+            </span>
+
+            <h2 className={styles.title}>
+              Crafted for
+              <br />
+              the few.
+            </h2>
+
+            <p className={styles.subtitle}>
+              Two fragrances. Two worlds.
+              <br />
+              Each one a statement.
             </p>
-            <div className="pc2-header-line" />
+
+            <div className={styles.headerLine} />
           </div>
         </Reveal>
 
         {/* Two-product grid */}
-        <div className="pc2-grid">
+        <div className={styles.grid}>
           {TWO_PRODUCTS.map((p, i) => (
             <ProductCard
               key={p.id}
@@ -95,10 +142,14 @@ export default function Collections({ onAddToCart }) {
 
         {/* Bottom strip */}
         <Reveal delay={0.35}>
-          <div className="pc2-bottom">
-            <div className="pc2-bottom-line" />
-            <span className="pc2-bottom-text">More fragrances arriving — 2025</span>
-            <div className="pc2-bottom-line" />
+          <div className={styles.bottom}>
+            <div className={styles.bottomLine} />
+
+            <span className={styles.bottomText}>
+              More fragrances arriving — 2025
+            </span>
+
+            <div className={styles.bottomLine} />
           </div>
         </Reveal>
       </div>

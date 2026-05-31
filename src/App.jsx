@@ -11,7 +11,6 @@ import FullBleed     from './components/FullBleed';
 import Collections   from './components/Collections';
 import Philosophy    from './components/Philosophy';
 import Gallery       from './components/Gallery';
-import ScentFinder   from './components/ScentFinder';
 import Testimonials  from './components/Testimonials';
 import Newsletter    from './components/Newsletter';
 import Contact       from './components/Contact';
