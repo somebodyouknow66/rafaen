@@ -1,4 +1,3 @@
-import './styles.css';
 import { useState, useCallback } from 'react';
 import { useCart, useTheme, useToast } from './hooks';
 
