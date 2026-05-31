@@ -1,10 +1,28 @@
 export const PRODUCTS = [
-  { id: 1, name: 'Noir Essence',    price: 285, type: 'Eau de Parfum · RAAFÉN',     notes: 'Deep oud · smoky amber · velvety rose',         badge: null,         seed: 'raafen-noir-a',   rating: 5, stars: [1,1,1,1,1] },
-  { id: 2, name: 'Golden Aura',     price: 320, type: 'Eau de Parfum · RAAFÉN',     notes: 'Rare saffron · jasmine sambac · aged sandalwood', badge: 'Bestseller', seed: 'raafen-golden',   rating: 5, stars: [1,1,1,1,1] },
-  { id: 3, name: 'Velvet Dusk',     price: 395, type: 'Extrait de Parfum · RAAFÉN', notes: 'Leather · vanilla orchid · tonka bean',           badge: null,         seed: 'raafen-velvet',   rating: 5, stars: [1,1,1,1,1] },
-  { id: 4, name: 'Ivory Mist',      price: 265, type: 'Eau de Parfum · RAAFÉN',     notes: 'White tea · Florentine iris · cashmere musk',     badge: null,         seed: 'raafen-ivory',    rating: 4, stars: [1,1,1,1,0] },
-  { id: 5, name: 'Crimson Veil',    price: 450, type: 'Extrait de Parfum · RAAFÉN', notes: 'Black rose · rare patchouli · pomegranate',       badge: 'Limited',    seed: 'raafen-crimson',  rating: 5, stars: [1,1,1,1,1] },
-  { id: 6, name: 'Ocean Reverie',   price: 220, type: 'Eau de Toilette · RAAFÉN',   notes: 'Sea salt · Calabrian bergamot · driftwood',       badge: null,         seed: 'raafen-ocean',    rating: 4, stars: [1,1,1,1,0] },
+  { 
+    id: 1, 
+    name: 'Throne',     
+    price: 'TBD', // Wrapped in quotes so it doesn't cause a syntax error
+    type: 'Eau de Parfum · RAAFÉN',     
+    notes: 'Deep oud · smoky amber · velvety rose',         
+    badge: 'bestseller',         
+    seed: 'raafen-throne', 
+    img: '/throne-product.png',
+    rating: 5, 
+    stars: [1,1,1,1,1] 
+  },
+  { 
+    id: 2, 
+    name: 'Oud e Siroor',     
+    price: 320, 
+    type: 'Eau de Parfum · RAAFÉN',     
+    notes: 'Rare saffron · jasmine sambac · aged sandalwood', 
+    badge: null, 
+    seed: 'raafen-oud', 
+    img: '/oud.png',
+    rating: 5, 
+    stars: [1,1,1,1,1] 
+  },
 ];
 
 export const TESTIMONIALS = [
@@ -13,15 +31,9 @@ export const TESTIMONIALS = [
   { id: 3, initials: 'AM', name: 'Amara M.',   location: 'Dubai, UAE',     text: "Noir Essence is darkness distilled into beauty. Fourteen hours of projection, and every one of them an event. RAAFÉN is worth every single cent." },
 ];
 
-export const SCENT_MAP = {
-  dark:   { name: 'Noir Essence',   desc: 'Dark oud, smoky amber, velvety rose. For those who command a room.',            emoji: '🌑', label: 'Dark & Deep'      },
-  floral: { name: 'Golden Aura',    desc: 'Rare saffron, jasmine sambac, aged sandalwood. Luminous and unforgettable.',    emoji: '🌸', label: 'Floral & Light'   },
-  ocean:  { name: 'Ocean Reverie',  desc: 'Sea salt, bergamot, driftwood. For the free spirit.',                           emoji: '🌊', label: 'Fresh & Marine'   },
-  exotic: { name: 'Crimson Veil',   desc: 'Black rose, patchouli, pomegranate. Seductive and mysterious.',                 emoji: '🌿', label: 'Exotic & Spiced'  },
-};
 
-export const MARQUEE_1 = ['RAAFÉN', 'Beyond The Ordinary', 'Paris'];
-export const MARQUEE_2 = ['RAAFÉN', 'Beyond The Ordinary', 'Maison de Parfum'];
+export const MARQUEE_1 = ['RAAFÉN', 'Beyond The Ordinary', 'Throne'];
+export const MARQUEE_2 = ['RAAFÉN', 'Beyond The Ordinary', 'Mirpurkhas'];
 
 export const NAV_LINKS = [
   { text: 'Story',       href: '#story'       },

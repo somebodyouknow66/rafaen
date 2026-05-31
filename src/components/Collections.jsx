@@ -7,8 +7,8 @@ const TWO_PRODUCTS = PRODUCTS.slice(0, 2);
 
 function ProductCard({ product, onAddToCart, index }) {
   const [wished, setWished] = useState(false);
-  const img = `https://picsum.photos/seed/${product.seed}/800/1000`;
-  const thumbImg = `https://picsum.photos/seed/${product.seed}/150/200`;
+  const img = product.img || `https://picsum.photos/seed/${product.seed}/800/1000`;
+  const thumbImg = product.img || `https://picsum.photos/seed/${product.seed}/150/200`;
 
   return (
     <Reveal delay={index * 0.15}>
