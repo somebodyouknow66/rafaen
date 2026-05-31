@@ -188,6 +188,7 @@ body {
 
 /* ─── TOAST ───────────────────────────────────────────────────── */
 #toast {
+  display: none;
   position: fixed;
   bottom: 32px;
   right: 32px;
@@ -205,7 +206,7 @@ body {
   transition: transform 0.5s var(--ease-expo);
   max-width: 320px;
 }
-#toast.show { transform: translateY(0); }
+#toast.show { transform: translateY(0); display:block }
 
 /* ─── KEYFRAMES ───────────────────────────────────────────────── */
 @keyframes fadeUp       { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
