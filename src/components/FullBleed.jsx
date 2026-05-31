@@ -17,4 +17,4 @@ export default function FullBleed() {
       </div>
     </div>
   );
-};
+}

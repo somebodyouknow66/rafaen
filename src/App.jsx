@@ -63,7 +63,6 @@ export default function App() {
         <FullBleed />
         <Philosophy />
         <Gallery />
-        <ScentFinder />
         <Testimonials />
         <Newsletter onToast={showToast} />
         <Marquee items={MARQUEE_2} dot="◆" reverse />
