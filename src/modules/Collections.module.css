@@ -18,7 +18,7 @@
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 20px;
-  color: rgba(196, 169, 110, 0.55);
+  color: rgba(196, 169, 110, 0.964);
   line-height: 1.7;
   margin-bottom: 28px;
 }
@@ -151,16 +151,16 @@
   font-size: 12px;
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: rgba(196, 169, 110, 0.6);
+  color: rgb(196, 169, 110);
 }
 
 .wish {
   width: 34px;
   height: 34px;
   background: transparent;
-  border: 1px solid rgba(196, 169, 110, 0.2);
+  border: 1px solid rgba(196, 110, 110, 0.356);
   border-radius: 50%;
-  color: rgba(196, 169, 110, 0.5);
+  color: rgba(196, 110, 110, 0.984);
   font-size: 15px;
   cursor: none;
   transition: all 0.3s;
@@ -170,16 +170,16 @@
 }
 .wish:hover,
 .wish.wished {
-  background: rgba(196, 169, 110, 0.12);
-  border-color: var(--gold-mid);
-  color: var(--gold-mid);
+  background: 1px solid rgba(196, 110, 110, 0.356);
+    border: 1px solid rgba(196, 110, 110, 0.356);
+  color: rgba(230, 103, 103, 0.984);
 }
 
 .name {
   font-family: var(--font-serif);
   font-size: 26px;
   font-weight: 600;
-  color: #eee;
+  color: whitesmoke;
   margin-bottom: 8px;
   letter-spacing: 0.02em;
   transition: color 0.3s;
@@ -190,7 +190,7 @@
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 15px;
-  color: rgba(196, 169, 110, 0.58);
+  color: rgb(196, 169, 110);
   margin-bottom: 20px;
   line-height: 1.5;
 }

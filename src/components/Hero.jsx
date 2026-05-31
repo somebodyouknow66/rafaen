@@ -39,7 +39,7 @@ export default function Hero() {
       {/* ── Centered content ── */}
       <div className={styles.content}>
         <div className={styles.eyebrow}>
-          Maison de Parfum &nbsp;·&nbsp; Paris &nbsp;·&nbsp; Est. 2019
+          Throning &nbsp;·&nbsp; Mirpurkhas &nbsp;·&nbsp; Est. 2026
         </div>
 
         {/* THRONE title container */}
